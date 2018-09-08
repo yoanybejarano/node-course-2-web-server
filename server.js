@@ -13,10 +13,10 @@ app.use((req, res, next) => {
     var now = new Date();
     var time = now - req.start;
     var log = `${now.toString()}: ${req.method} ${req.url} ${res.statusCode}`;
-    fs.appendFile('server.log', log + '\n' ,(err) => {
-        if(err) console.log('Unable to append to server.log')
+    fs.appendFile('server.log', log + '\n', (err) => {
+        if (err) console.log('Unable to append to server.log')
     });
-
+    console.log(log);
     next();
 });
 
@@ -46,6 +46,12 @@ app.get('/about', (req, res) => {
     res.render('about', {
         pageTitle: 'About Page',
         currentYear: new Date().getFullYear()
+    });
+});
+
+app.get('/projects', (req, res) => { 
+    res.render('projects',{
+        pageTitle: 'Projects'
     });
 });
 
